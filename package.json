@@ -1,0 +1,20 @@
+{
+  "name": "excel-messenger",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-layer": "docker build -t excel-messenger-dependencies . && docker run -v $(pwd)/nodejs/node_modules:/opt/node_modules excel-messenger-dependencies && zip -r nodejs.zip nodejs && aws lambda publish-layer-version --layer-name canvas",
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1",
+    "serverless": "^1.56.1"
+  },
+  "dependencies": {}
+}

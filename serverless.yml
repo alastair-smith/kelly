@@ -1,0 +1,26 @@
+service: excel-messenger
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: eu-west-1
+  # replace values with your api gateway
+  apiGateway:
+    restApiId: cr286liah6
+    restApiRootResourceId: x3uup101ef
+
+functions:
+  main:
+    handler: index.handler
+    # layers with binaries/node modules required for canvas npm module
+    layers:
+      - arn:aws:lambda:eu-west-1:523361676583:layer:canvas:3
+      - arn:aws:lambda:eu-west-1:523361676583:layer:canvas-libs:1
+    events:
+      - http:
+          path: /kelly
+          method: get
+        cors:
+          origin: 'https://alsmith.dev'
+    environment:
+      FONTCONFIG_PATH: '/var/task/fonts'
