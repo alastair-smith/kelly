@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <meta name='Description'
+    content='Send messages just like Kelly Rowland in the song Dilemma using the latest in excel technology.'>
+  <title>al smith - Send a message just like Kelly Rowland</title>
+</head>
+
+<body>
+  <main id='main'>
+    <canvas id='canvas' width='968' height='681'></canvas>
+  </main>
+  <script>
+    // Create canvas with image and text
+    const text = 'hello'
+    const MAX_WIDTH = 580
+    const canvas = document.getElementById('canvas')
+    const context = canvas.getContext('2d')
+    const backgroundImage = new Image()
+    backgroundImage.src = '../base-image2.jpg'
+
+    backgroundImage.addEventListener('load', () => {
+      context.drawImage(backgroundImage, 0, 0)
+      context.save()
+      context.rotate(0.6)
+      context.fillStyle = '#0049af'
+      context.font = '38px serif'
+      while (context.measureText(text).width > MAX_WIDTH) {
+        console.log('text', text)
+        text = text.substring(0, text.length - 1)
+      }
+      context.fillText(text, 320, -110)
+      context.restore()
+      const dataUrl = canvas.toDataURL()
+      const main = document.getElementById('main')
+      const image = new Image()
+      image.src = dataUrl
+      main.appendChild(image)
+      canvas.remove()
+    })
+  </script>
+</body>
+
+</html>
