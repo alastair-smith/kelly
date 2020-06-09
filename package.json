@@ -16,5 +16,7 @@
     "express": "^4.17.1",
     "serverless": "^1.56.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gif-encoder": "^0.7.2"
+  }
 }
